@@ -57,4 +57,10 @@ Win 键 + Q ，在搜索框内输入 Powershell 。
 ```
 git push的时候总是让你输入密码，把公钥添加到账户里也不行。
 https://blog.csdn.net/Nick_Zhang_CSDN/article/details/99308541
+https://blog.csdn.net/yychuyu/article/details/80186783
+
+```
+.gitignore的部分规则
+```
+https://www.cnblogs.com/19930521zhang/p/16163852.html
 ```
