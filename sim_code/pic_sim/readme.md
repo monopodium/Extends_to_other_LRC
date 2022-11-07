@@ -52,3 +52,9 @@ Win 键 + Q ，在搜索框内输入 Powershell 。
 
 就可以正常在 PowerShell 中运行 ps1 文件了
 ```
+
+
+```
+git push的时候总是让你输入密码，把公钥添加到账户里也不行。
+https://blog.csdn.net/Nick_Zhang_CSDN/article/details/99308541
+```
