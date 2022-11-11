@@ -240,7 +240,7 @@ class Code_Placement(object):
     def generate_block_repair_request(self):
         pass
 
-    def return_group_number():
+    def return_group_number(self):
         pass
 
     def generate_random_placement(self, random_seed=10):
@@ -307,7 +307,7 @@ class Code_Placement(object):
 
         assert self.check_cluster_information(self.flat_placement)
 
-    def generate_best_placement():
+    def generate_best_placement(self):
         pass
 
     def calculate_distance(self):
