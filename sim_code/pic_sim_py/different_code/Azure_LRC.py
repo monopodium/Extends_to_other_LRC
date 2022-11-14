@@ -66,7 +66,7 @@ class Azure_LRC(Code_Placement):
                     cluster_id += 1
             else:
                 for block_id in range(0, len(group), self.b):
-                    if block_id + self.b > len(group):
+                    if block_id + self.b >= len(group):
                         remain_tails.append(group[block_id:])
                     else:
                         new_cluster = cluster(cluster_id, self.b)
