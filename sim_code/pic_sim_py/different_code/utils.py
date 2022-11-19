@@ -27,12 +27,13 @@ class cluster(object):
         return True
 
     def add_new_block(self, new_block, group_number):
-        if len(self.__blocks) < self.__upperbound:
-            self.__blocks.append(new_block)
-            if group_number is not None:
-                self.__from_groups.add(group_number)
-            return True
-        return False
+        #if len(self.__blocks) < self.__upperbound:
+        self.__blocks.append(new_block)
+        if group_number is not None:
+            self.__from_groups.add(group_number)
+
+    def remaind(self):
+        return self.__upperbound - len(self.__blocks)
 
     def return_all_blocks(self):
         return self.__blocks
@@ -68,6 +69,8 @@ class Code_Placement(object):
     def print_information(self):
         if self.if_debug:
             print("-------------debug_information-------------")
+            print("n k r")
+            print(self.n, self.k, self.r)
             print("self.raw_stripe")
             print(self.raw_stripe)
             print("self.stripe_information")
@@ -195,7 +198,7 @@ class Code_Placement(object):
             self.generate_best_placement()
             self.generate_repair_cost(self.best_placement)
         self.print_information()
-        return self.return_DRC(), self.return_NRC()
+        return round(self.return_DRC(), 1), round(self.return_NRC(), 1)
 
     def return_NRC(self):
         cost_sum = 0
@@ -240,17 +243,14 @@ class Code_Placement(object):
     def generate_block_repair_request(self):
         pass
 
-    def return_group_number():
-        pass
-
     def generate_random_placement(self, random_seed=10):
         random.seed(random_seed)
         count = 0
         raw_stripe = self.raw_stripe.copy()
         for i in range(self.n):
-            blocks_in_cluster = random.randint(1, self.d-1)
+            blocks_in_cluster = random.randint(1, self.d - 1)
             cluster_id = len(self.random_placement['raw_information'])
-            new_cluster = cluster(cluster_id, self.d-1)
+            new_cluster = cluster(cluster_id, self.d)
             if (count + blocks_in_cluster) > self.n:
                 blocks_in_cluster = self.n - count
             #print(self.d-1, new_cluster.return_all_blocks())

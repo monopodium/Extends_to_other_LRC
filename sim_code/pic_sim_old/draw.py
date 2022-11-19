@@ -1,11 +1,13 @@
-from random_gen import random_gen
-from parameters import XORBAS_NRC_LIST,XORBAS_DRC_LIST,PARAMETERS_DIFF_PLACEMENT,\
-    STR_PARAMETERS_DIFF_PLACEMENT,PARAMETERS_DIFF_CODES,STR_PARAMETERS_DIFF_CODES
-from flat import flat
-from our_placement import our_placement
 from Azure_LRC import azure_LRC
 from Azure_LRC_1 import azure_LRC_1
-from draw_bar import create_multi_bars,create_multi_bars1
+from draw_bar import create_multi_bars, create_multi_bars1
+from flat import flat
+from our_placement import our_placement
+from parameters import (PARAMETERS_DIFF_CODES, PARAMETERS_DIFF_PLACEMENT,
+                        STR_PARAMETERS_DIFF_CODES,
+                        STR_PARAMETERS_DIFF_PLACEMENT, XORBAS_DRC_LIST,
+                        XORBAS_NRC_LIST)
+from random_gen import random_gen
 
 
 def gen_data_diff_placement(in_PARAMETERS_DIFF_PLACEMENT, random_count = 10):  
@@ -19,27 +21,30 @@ def gen_data_diff_placement(in_PARAMETERS_DIFF_PLACEMENT, random_count = 10):
         print("===========================================")
         print(code)
         flat_DRC,flat_NRC = flat(code) 
-        print("flat_DRC",flat_DRC)
-        print("flat_NRC",flat_NRC)
-        print("")
+        # print("flat_DRC",flat_DRC)
+        # print("flat_NRC",flat_NRC)
+        # print("")
         sum_DRC = 0
         sum_NRC = 0
         for i in range(random_count):
             DRC,NRC = random_gen(code)
             sum_DRC = sum_DRC + DRC
             sum_NRC = sum_NRC + NRC
-        print("random_DRC",sum_DRC/random_count)
-        print("random_NRC",sum_NRC/random_count)
-        print("")
+        # print("random_DRC",sum_DRC/random_count)
+        # print("random_NRC",sum_NRC/random_count)
+        # print("")
         our_DRC,our_NRC = our_placement(code)
-        print("our_DRC",our_DRC)
-        print("our_NRC",our_NRC)
+        # print("our_DRC",our_DRC)
+        # print("our_NRC",our_NRC)
         flat_NRC_list.append(flat_NRC)
         random_NRC_list.append(sum_NRC/random_count)
         our_NRC_list.append(our_NRC)
         flat_DRC_list.append(flat_DRC)
         random_DRC_list.append(sum_DRC/random_count)
         our_DRC_list.append(our_DRC)
+        print(round(flat_DRC, 1), round(flat_NRC, 1))
+        print(round(sum_DRC/random_count, 1), round(sum_NRC/random_count, 1))
+        print(round(our_DRC, 1), round(our_NRC, 1))
     data_NRC = [flat_NRC_list,random_NRC_list,our_NRC_list] 
     data_DRC = [flat_DRC_list,random_DRC_list,our_DRC_list]
     return data_NRC,data_DRC
@@ -95,10 +100,11 @@ print("max:",max(r_list))
 
 my_label = ["Flat NRC","Random NRC","R-Opt NRC","DRC"] #Our Placement   
 data_NRC,data_DRC = gen_data_diff_placement(PARAMETERS_DIFF_PLACEMENT, random_count = 1)
+
 yticks = [2,4,6,8,10,12]
-create_multi_bars1(yticks,my_label,STR_PARAMETERS_DIFF_PLACEMENT,data_NRC,data_DRC, tick_step=10,group_gap=2,bar_gap=0,nu_list_str = STR_PARAMETERS_DIFF_PLACEMENT)
+#create_multi_bars1(yticks,my_label,STR_PARAMETERS_DIFF_PLACEMENT,data_NRC,data_DRC, tick_step=10,group_gap=2,bar_gap=0,nu_list_str = STR_PARAMETERS_DIFF_PLACEMENT)
 
 my_label = ["Opt-LRC NRC","Azure NRC","Azure+1 NRC","Xorbas NRC","DRC"] #Our Placement
 data_NRC,data_DRC = compare_diff_code()
 yticks = [0,0.5,1,1.5,2,2.5,3,3.5,4]
-create_multi_bars(yticks,my_label,STR_PARAMETERS_DIFF_CODES, data_NRC,data_DRC, tick_step=10,group_gap=2,bar_gap=0,nu_list_str = STR_PARAMETERS_DIFF_CODES)
+#create_multi_bars(yticks,my_label,STR_PARAMETERS_DIFF_CODES, data_NRC,data_DRC, tick_step=10,group_gap=2,bar_gap=0,nu_list_str = STR_PARAMETERS_DIFF_CODES)
