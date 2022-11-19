@@ -1,4 +1,8 @@
 import math
+import sys
+
+from parameters import PARAMETERS_DIFF_PLACEMENT
+
 
 def azure_LRC_1(code,debug):
     n = code[0]
