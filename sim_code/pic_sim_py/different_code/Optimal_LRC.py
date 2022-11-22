@@ -1,7 +1,7 @@
 import math
 import random
 
-from parameter import PARAMETERS_DIFF_PLACEMENT
+from parameter import PARAMETERS_OPT
 from utils import Code_Placement, cluster
 
 
@@ -78,13 +78,17 @@ class Optimal_LRC(Code_Placement):
 
     def check_parameter(self):
         #print(self.n, self.l, self.k, self.g, self.r)
-        assert self.n % (self.r+1) != 1, 'Parameters do not meet requirements!'
+        print('Parameters do not meet requirements!')
+        #assert self.n % (self.r+1) != 1, 'Parameters do not meet requirements!'
+        if self.n % (self.r+1) == 1:
+            return False
+        return True
 
 
 if __name__ == '__main__':
     #
     optimal_lrc = Optimal_LRC()
-    for item in PARAMETERS_DIFF_PLACEMENT:
+    for item in PARAMETERS_OPT:
         n = item[0]
         k = item[1]
         r = item[2]

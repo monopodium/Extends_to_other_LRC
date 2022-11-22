@@ -1,7 +1,7 @@
 import math
 import random
 
-from parameter import PARAMETER_XORBAS, PARAMETERS_DIFF_PLACEMENT
+from parameter import PARAMETER_XORBAS
 from utils import Code_Placement, cluster
 
 
@@ -127,7 +127,9 @@ class Xorbas(Code_Placement):
 
     def check_parameter(self):
         #print(self.n, self.l, self.k, self.g, self.r)
-        pass
+        if not (self.n, self.k, self.r) in PARAMETER_XORBAS:
+            return False
+        return True
         #assert self.n % (self.r+1) != 1, 'Parameters do not meet requirements!'
 
 

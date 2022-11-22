@@ -1,6 +1,7 @@
 import math
-from utils import Code_Placement
-from utils import cluster
+
+from utils import Code_Placement, cluster
+
 
 class Azure_LRC(Code_Placement):
     def generate_stripe_information(self):
@@ -110,7 +111,12 @@ class Azure_LRC(Code_Placement):
         return n, k, r
 
     def check_parameter(self):
-        assert self.n >= self.k + self.l, 'Parameters do not meet requirements!'
+        if self.n >= self.k + self.l:
+            return True
+        else:
+            print('Azure_LRC:Parameters do not meet requirements!')
+            return False
+        #assert self.n >= self.k + self.l, 'Parameters do not meet requirements!'
 
 if __name__ == '__main__':
     azure_lrc = Azure_LRC()

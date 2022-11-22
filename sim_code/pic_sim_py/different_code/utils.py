@@ -1,4 +1,3 @@
-import math
 import random
 
 
@@ -182,7 +181,10 @@ class Code_Placement(object):
         self.set_debug(if_debug)
         self.set_parameter(k_data_blocks, l_parity_blocks, g_global_blocks,
                            r_data_blocks_each_group)
-        self.check_parameter()
+
+        if not self.check_parameter():
+            return None, None
+
         self.calculate_distance()
         self.generate_raw_information()
         self.generate_stripe_information()
@@ -199,6 +201,7 @@ class Code_Placement(object):
             self.generate_repair_cost(self.best_placement)
         self.print_information()
         return round(self.return_DRC(), 1), round(self.return_NRC(), 1)
+        #return self.return_DRC(), 1), round(self.return_NRC(), 1)
 
     def return_NRC(self):
         cost_sum = 0
